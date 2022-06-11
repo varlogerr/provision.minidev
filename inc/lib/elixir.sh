@@ -34,3 +34,6 @@ elixir.config_vscode() {
     su - "${CONF[target_user]}" -c "code --force --install-extension ${ext}"
   done
 }
+
+elixir.install
+elixir.config_vscode

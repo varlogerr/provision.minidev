@@ -42,8 +42,22 @@ common.install_vscode() {
   apt install -y code
 }
 
+common.config_vscode_editorconfig() {
+  local ext=editorconfig.editorconfig
+  common.log "${phase}" "installing (${ext})..."
+  su - "${CONF[target_user]}" -c "code --force --install-extension ${ext}"
+}
+
 common.create_proj_dir() {
   local dest="${CONF[target_user_home]}/${CONF[projects_dir_prefix]}"
   common.log "projdir" "creating ${dest} ..."
   mkdir -p "${dest}"
 }
+
+common.update_repository
+
+common.install_musts
+common.install_git
+common.install_vscode
+common.config_vscode_editorconfig
+common.create_proj_dir
