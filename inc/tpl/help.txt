@@ -1,0 +1,7 @@
+Usage:
+  # provision using the tool with defaults
+  {{tool_name}}
+  # provision using the tool with conf file
+  {{tool_name}} --conf CONF_FILE
+  # generate a configuration file
+  {{tool_name}} gen-conf
