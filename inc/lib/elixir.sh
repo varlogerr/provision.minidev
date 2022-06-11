@@ -30,7 +30,7 @@ elixir.config_vscode() {
   apt install -y ${pkgs}
 
   for ext in ${exts}; do
-    common.log "${phase}" "installing (${ext})..."
+    common.log "${phase}" "installing (${ext}) ..."
     su - "${CONF[target_user]}" -c "code --force --install-extension ${ext}"
   done
 }

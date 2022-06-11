@@ -3,4 +3,8 @@ declare -A SYS_CONF=(
   [ms_gpg_link]=https://packages.microsoft.com/keys/microsoft.asc
   [vscode_repo_link]=https://packages.microsoft.com/repos/vscode
   [bashrcd_prefix]=.bashrc.d
+  [tmux_tpm_repo_url]=https://github.com/tmux-plugins/tpm.git
+  [tmux_dir_prefix]=.tmux
+  [tmux_plugins_prefix]=.tmux/plugins
+  [tmux_tpm_prefix]=.tmux/plugins/tpm
 )

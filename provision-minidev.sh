@@ -12,6 +12,7 @@ for f in \
   validation \
   sys-conf \
   lib/common \
-  lib/elixir \
   lib/git \
+  lib/tmux \
+  lib/elixir \
 ; do . "${PROJECT_DIR}/inc/${f}.sh"; done
