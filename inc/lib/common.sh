@@ -51,7 +51,7 @@ common.config_vscode_editorconfig() {
 common.create_proj_dir() {
   local dest="${CONF[target_user_home]}/${CONF[projects_dir_prefix]}"
   common.log "projdir" "creating ${dest} ..."
-  mkdir -p "${dest}"
+  su - "${CONF[target_user]}" -c "mkdir -p '${dest}'"
 }
 
 common.update_repository

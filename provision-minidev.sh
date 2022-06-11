@@ -3,6 +3,8 @@
 PROJECT_DIR="$(dirname "$(realpath "${BASH_SOURCE[0]}")")"
 TOOL_NAME="$(basename "${BASH_SOURCE[0]}")"
 
+INVALID_ARGS=()
+
 for f in \
   tpl/conf \
   read-args \

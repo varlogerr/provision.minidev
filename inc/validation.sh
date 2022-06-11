@@ -18,3 +18,19 @@ __iife_validate_empty_conf() {
 
   return 1
 } && __iife_validate_empty_conf && exit 1
+
+__iife_invalid_args() {
+  unset __iife_invalid_args
+
+  [[ ${#INVALID_ARGS} -lt 1 ]] && return 1
+
+  echo "Invalid arguments:"
+  for inval in "${INVALID_ARGS[@]}"; do
+    echo "  ${inval}"
+  done
+
+  echo
+  sed 's/{{tool_name}}/'${TOOL_NAME}'/g' "${PROJECT_DIR}/inc/tpl/help.txt"
+
+  return 0
+} && __iife_invalid_args && exit 1
