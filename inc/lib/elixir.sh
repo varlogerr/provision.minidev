@@ -44,6 +44,22 @@ elixir.create_proj_dir() {
   cmd_target "mkdir -p '${dest}'"
 }
 
+elixir.configure_tmuxp() {
+  local phase="tmuxp:config"
+  local dest_file="$(printf -- '%s/%s/%s.yml' \
+    "${CONF[target_user_home]}" \
+    "${CONF[tmux_tmuxp_dir_prefix]}" \
+    "${CONF[elixir_tmuxp_name]}")"
+  local start_dir="$(printf -- '%s/%s/%s' \
+    "${CONF[target_user_home]}" \
+    "${CONF[projects_dir_prefix]}" \
+    "${CONF[elixir_dir_prefix]}")"
+
+  common.log "${phase}" "configuring ..."
+  tmux._cp_tmuxp_conf "${phase}" "${dest_file}" "${start_dir}"
+}
+
 elixir.install
 elixir.config_vscode
 elixir.create_proj_dir
+elixir.configure_tmuxp

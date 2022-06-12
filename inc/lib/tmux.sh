@@ -71,17 +71,25 @@ tmux.configure_tmuxp() {
     "${CONF[target_user_home]}" \
     "${CONF[tmux_tmuxp_dir_prefix]}")"
   local dest_file="$(printf -- '%s/%s.yml' \
-    "${dest_dir}" "${CONF[tmux_tmuxp_main_name]}")"
+    "${dest_dir}" "${CONF[tmux_tmuxp_name]}")"
 
   common.log "${phase}" "configuring ..."
 
   common.log "${phase}" "creating ${dest_dir} ..."
   cmd_target "mkdir -p '${dest_dir}'"
+  tmux._cp_tmuxp_conf "${phase}" "${dest_file}" '~'
+}
+
+tmux._cp_tmuxp_conf() {
+  local phase="${1}"
+  local dest_file="${2}"
+  local name="$(basename "${dest_file}" .yml)"
+  local start_dir="${3}"
 
   common.log "${phase}" "creating ${dest_file} ..."
   cmd_target "cp '${PROJECT_DIR}/inc/tpl/tmux/main.tmuxp.yml' '${dest_file}'"
-  sed -i "s/{{name}}/${CONF[tmux_tmuxp_main_name]}/g" "${dest_file}"
-  sed -i "s/{{start_dir}}/~/g" "${dest_file}"
+  sed -i "s/{{name}}/${name}/g" "${dest_file}"
+  sed -i "s/{{start_dir}}/${start_dir//\//\\/}/g" "${dest_file}"
 }
 
 tmux.install
