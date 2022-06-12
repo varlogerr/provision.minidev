@@ -45,13 +45,13 @@ common.install_vscode() {
 common.config_vscode_editorconfig() {
   local ext=editorconfig.editorconfig
   common.log "${phase}" "installing (${ext})..."
-  su - "${CONF[target_user]}" -c "code --force --install-extension ${ext}"
+  cmd_target "code --force --install-extension ${ext}"
 }
 
 common.create_proj_dir() {
   local dest="${CONF[target_user_home]}/${CONF[projects_dir_prefix]}"
   common.log "projdir" "creating ${dest} ..."
-  su - "${CONF[target_user]}" -c "mkdir -p '${dest}'"
+  cmd_target "mkdir -p '${dest}'"
 }
 
 common.update_repository

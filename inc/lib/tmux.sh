@@ -23,7 +23,7 @@ tmux.configure() {
   common.log "${phase}" "configuring ..."
 
   while read -r cmd; do
-    [[ -n "${cmd}" ]] && su - "${CONF[target_user]}" -c "${cmd}"
+    [[ -n "${cmd}" ]] && cmd_target "${cmd}"
   done <<< "
     cp '${PROJECT_DIR}/inc/tpl/tmux/.tmux.conf' '${dest_conffile}'
     mkdir -p '${confdir}'
@@ -33,12 +33,12 @@ tmux.configure() {
   "
 
   [[ ! -d "${tpm_dir}" ]] && {
-    su - "${CONF[target_user]}" -c "git clone '${SYS_CONF[tmux_tpm_repo_url]}' '${tpm_dir}'"
+    cmd_target "git clone '${SYS_CONF[tmux_tpm_repo_url]}' '${tpm_dir}'"
   }
 
   local cs_before="$(sha256sum "${dest_pluginsfile}" 2> /dev/null | cut -d' ' -f1)"
   while read -r cmd; do
-    [[ -n "${cmd}" ]] && su - "${CONF[target_user]}" -c "${cmd}"
+    [[ -n "${cmd}" ]] && cmd_target "${cmd}"
   done <<< "
     cp '${PROJECT_DIR}/inc/tpl/tmux/plugins.conf' '${dest_pluginsfile}'
     sed -i 's/{{plugins_dir}}/${plugdir//\//\\/}/g' '${dest_pluginsfile}'
@@ -48,7 +48,7 @@ tmux.configure() {
 
   [[ "${cs_before}" != "${cs_after}" ]] && {
     common.log "${phase}" "installing plugins ..."
-    "${tpm_dir}/scripts/install_plugins.sh"
+    cmd_target "${tpm_dir}/scripts/install_plugins.sh"
   }
 }
 

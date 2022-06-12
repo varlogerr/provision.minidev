@@ -31,7 +31,7 @@ elixir.config_vscode() {
 
   for ext in ${exts}; do
     common.log "${phase}" "installing (${ext}) ..."
-    su - "${CONF[target_user]}" -c "code --force --install-extension ${ext}"
+    cmd_target "code --force --install-extension ${ext}"
   done
 }
 

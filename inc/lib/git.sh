@@ -3,7 +3,7 @@ git.gitconfig() {
 
   common.log "git:config" "configuring .gitconfig ..."
 
-  su - "${CONF[target_user]}" -c "cp '${PROJECT_DIR}/inc/tpl/git/.gitconfig' '${dest}'"
+  cmd_target "cp '${PROJECT_DIR}/inc/tpl/git/.gitconfig' '${dest}'"
 
   sed -i "s/{{name}}/${CONF[git_user]}/g" "${dest}"
   sed -i "s/{{email}}/${CONF[git_email]}/g" "${dest}"
@@ -17,8 +17,10 @@ git.config_ps1() {
 
   common.log "git:config" "configuring git PS1 ..."
 
-  su - "${CONF[target_user]}" -c "mkdir -p '${confd}'"
-  su - "${CONF[target_user]}" -c "cp '${PROJECT_DIR}/inc/tpl/git/ps1.sh' '${dest_file}'"
+  while read -r cmd; do [[ -n "${cmd}" ]] && cmd_target "${cmd}"; done <<< "
+    mkdir -p '${confd}'
+    cp '${PROJECT_DIR}/inc/tpl/git/ps1.sh' '${dest_file}'
+  "
 
   ! grep -qF "${source_cmd}" "${bashrc_path}" \
     && echo $'\n'"# source ${confd}/*.sh files" >> "${bashrc_path}" \
