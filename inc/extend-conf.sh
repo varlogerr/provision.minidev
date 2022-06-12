@@ -11,6 +11,8 @@ CONF+=(
   [bashrcd_prefix]=.bashrc.d
   [tmux_tpm_repo_url]=https://github.com/tmux-plugins/tpm.git
   [tmux_dir_prefix]=.tmux
+  [tmux_tmuxp_dir_prefix]=.tmuxp
+  [tmux_tmuxp_main_name]=main
   [tmux_plugins_prefix]=.tmux/plugins
   [tmux_tpm_prefix]=.tmux/plugins/tpm
 )

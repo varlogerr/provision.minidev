@@ -1,0 +1,12 @@
+---
+# https://tmuxp.git-pull.com/examples.html
+session_name: Work
+windows:
+  - window_name: '{{name}}'
+    layout: tiled
+    start_directory: '{{start_dir}}'
+    panes:
+      - focus: true
+      -
+      -
+      -

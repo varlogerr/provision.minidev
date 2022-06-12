@@ -66,9 +66,25 @@ tmux.install_tmuxp() {
 }
 
 tmux.configure_tmuxp() {
-  :
+  local phase="tmuxp:config"
+  local dest_dir="$(printf -- '%s/%s' \
+    "${CONF[target_user_home]}" \
+    "${CONF[tmux_tmuxp_dir_prefix]}")"
+  local dest_file="$(printf -- '%s/%s.yml' \
+    "${dest_dir}" "${CONF[tmux_tmuxp_main_name]}")"
+
+  common.log "${phase}" "configuring ..."
+
+  common.log "${phase}" "creating ${dest_dir} ..."
+  cmd_target "mkdir -p '${dest_dir}'"
+
+  common.log "${phase}" "creating ${dest_file} ..."
+  cmd_target "cp '${PROJECT_DIR}/inc/tpl/tmux/main.tmuxp.yml' '${dest_file}'"
+  sed -i "s/{{name}}/${CONF[tmux_tmuxp_main_name]}/g" "${dest_file}"
+  sed -i "s/{{start_dir}}/~/g" "${dest_file}"
 }
 
 tmux.install
 tmux.configure
 tmux.install_tmuxp
+tmux.configure_tmuxp
