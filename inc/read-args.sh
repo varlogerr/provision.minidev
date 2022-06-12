@@ -22,8 +22,8 @@ __iife_read_args() {
     [[ -z "${1+x}" ]] && break
 
     case "${1}" in
-      --conf  )   . "${2}"; shift ;;
-      *       )   INVALID_ARGS+=("${1}")
+      -c|--conf )   [[ -f "${2}" ]] && . "${2}"; shift ;;
+      *         )   INVALID_ARGS+=("${1}")
     esac
 
     shift
