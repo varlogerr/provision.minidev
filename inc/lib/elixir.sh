@@ -24,15 +24,9 @@ elixir.install() {
 
 elixir.config_vscode() {
   local pkgs="erlang-dialyzer erlang-edoc"
-  local exts="jakebecker.elixir-ls"
-  local phase="vscode-ext:elixir"
 
   apt install -y ${pkgs}
-
-  for ext in ${exts}; do
-    common.log "${phase}" "installing (${ext}) ..."
-    cmd_target "code --force --install-extension ${ext}"
-  done
+  vscode._install_ext "elixir" "jakebecker.elixir-ls"
 }
 
 elixir.create_proj_dir() {

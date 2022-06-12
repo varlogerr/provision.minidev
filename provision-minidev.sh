@@ -14,6 +14,8 @@ for f in \
   lib/common \
   lib/git \
   lib/tmux \
+  lib/vscode \
   lib/elixir \
+  lib/nodejs \
   lib/cleanup \
 ; do . "${PROJECT_DIR}/inc/${f}.sh"; done

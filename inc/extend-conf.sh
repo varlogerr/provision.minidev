@@ -16,4 +16,6 @@ CONF+=(
   [tmux_plugins_prefix]=.tmux/plugins
   [tmux_tpm_prefix]=.tmux/plugins/tpm
   [elixir_tmuxp_name]=elixir
+  [nodejs_preinstall_script_link]="https://deb.nodesource.com/setup_${CONF[nodejs_version]}.x"
+  [nodejs_tmuxp_name]=nodejs
 )

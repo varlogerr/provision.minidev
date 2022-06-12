@@ -4,7 +4,7 @@ cleanup.cleanup() {
   apt -y clean
   apt -y autoclean
   apt -y autoremove
-  rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+  rm -rf /var/lib/apt/lists/* /var/tmp/*
 }
 
 cleanup.cleanup

@@ -48,29 +48,6 @@ common.install_chrome() {
   apt install -y google-chrome-stable
 }
 
-common.install_vscode() {
-  local phase="vscode"
-  local gpg_file=/usr/share/keyrings/microsoft.gpg
-  which code > /dev/null && {
-    common.log "${phase}" "skipping installation (installed)"
-    return
-  }
-
-  common.log "${phase}" "installing ..."
-  wget -q -O- "${CONF[ms_gpg_link]}" \
-    | gpg --dearmor > "${gpg_file}"
-  echo "deb [arch=amd64 signed-by=${gpg_file}] ${CONF[vscode_repo_link]} stable main" \
-    > /etc/apt/sources.list.d/vscode.list
-  common.update_repository
-  apt install -y code
-}
-
-common.config_vscode_editorconfig() {
-  local ext=editorconfig.editorconfig
-  common.log "${phase}" "installing (${ext})..."
-  cmd_target "code --force --install-extension ${ext}"
-}
-
 common.create_proj_dir() {
   local dest="$(printf -- '%s/%s' \
     "${CONF[target_user_home]}" \
@@ -84,6 +61,4 @@ common.update_repository
 common.install_musts
 common.install_git
 common.install_chrome
-common.install_vscode
-common.config_vscode_editorconfig
 common.create_proj_dir
