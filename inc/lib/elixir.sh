@@ -35,5 +35,15 @@ elixir.config_vscode() {
   done
 }
 
+elixir.create_proj_dir() {
+  local dest="$(printf -- '%s/%s/%s' \
+    "${CONF[target_user_home]}" \
+    "${CONF[projects_dir_prefix]}" \
+    "${CONF[elixir_dir_prefix]}")"
+  common.log "projdir" "creating ${dest} ..."
+  cmd_target "mkdir -p '${dest}'"
+}
+
 elixir.install
 elixir.config_vscode
+elixir.create_proj_dir

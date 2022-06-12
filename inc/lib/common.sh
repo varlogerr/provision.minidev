@@ -49,7 +49,9 @@ common.config_vscode_editorconfig() {
 }
 
 common.create_proj_dir() {
-  local dest="${CONF[target_user_home]}/${CONF[projects_dir_prefix]}"
+  local dest="$(printf -- '%s/%s' \
+    "${CONF[target_user_home]}" \
+    "${CONF[projects_dir_prefix]}")"
   common.log "projdir" "creating ${dest} ..."
   cmd_target "mkdir -p '${dest}'"
 }
