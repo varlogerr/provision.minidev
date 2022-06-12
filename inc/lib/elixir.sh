@@ -15,7 +15,7 @@ elixir.install() {
 
   common.log "${phase}" "installing ..."
 
-  wget -O "${deb_dest}" "${SYS_CONF[erlang_dl_link]}"
+  wget -O "${deb_dest}" "${CONF[erlang_dl_link]}"
   dpkg -i "${deb_dest}"
   common.update_repository
   apt install -y ${pkgs}

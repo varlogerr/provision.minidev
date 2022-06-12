@@ -10,8 +10,8 @@ git.gitconfig() {
 }
 
 git.config_ps1() {
-  local confd="${CONF[target_user_home]}/${SYS_CONF[bashrcd_prefix]}"
-  local dest_file="${CONF[target_user_home]}/${SYS_CONF[bashrcd_prefix]}/0100-git-ps1.sh"
+  local confd="${CONF[target_user_home]}/${CONF[bashrcd_prefix]}"
+  local dest_file="${CONF[target_user_home]}/${CONF[bashrcd_prefix]}/0100-git-ps1.sh"
   local source_cmd="for f in '${confd}'/*.sh; do . \"\${f}\" > /dev/null; done"
   local bashrc_path="${CONF[target_user_home]}/.bashrc"
 

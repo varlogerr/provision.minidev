@@ -14,11 +14,11 @@ tmux.install() {
 tmux.configure() {
   local phase="tmux:config"
   local dest_conffile="${CONF[target_user_home]}/.tmux.conf"
-  local confdir="${CONF[target_user_home]}/${SYS_CONF[tmux_dir_prefix]}"
+  local confdir="${CONF[target_user_home]}/${CONF[tmux_dir_prefix]}"
   local dest_settingsfile="${confdir}/settings.conf"
   local dest_pluginsfile="${confdir}/plugins.conf"
-  local plugdir="${CONF[target_user_home]}/${SYS_CONF[tmux_plugins_prefix]}"
-  local tpm_dir="${CONF[target_user_home]}/${SYS_CONF[tmux_tpm_prefix]}"
+  local plugdir="${CONF[target_user_home]}/${CONF[tmux_plugins_prefix]}"
+  local tpm_dir="${CONF[target_user_home]}/${CONF[tmux_tpm_prefix]}"
 
   common.log "${phase}" "configuring ..."
 
@@ -33,7 +33,7 @@ tmux.configure() {
   "
 
   [[ ! -d "${tpm_dir}" ]] && {
-    cmd_target "git clone '${SYS_CONF[tmux_tpm_repo_url]}' '${tpm_dir}'"
+    cmd_target "git clone '${CONF[tmux_tpm_repo_url]}' '${tpm_dir}'"
   }
 
   local cs_before="$(sha256sum "${dest_pluginsfile}" 2> /dev/null | cut -d' ' -f1)"

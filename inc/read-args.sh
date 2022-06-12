@@ -6,7 +6,7 @@ __iife_read_stop_args() {
 
     case "${1}" in
       -\?|-h|--help )   sed 's/{{tool_name}}/'${TOOL_NAME}'/g' "${PROJECT_DIR}/inc/tpl/help.txt"; return 0;;
-      gen-conf      )   sed 's/^declare -A //g' "${PROJECT_DIR}/inc/tpl/conf.sh"; return 0;;
+      gen-conf      )   sed 's/^declare -A CONF=/CONF+=/g' "${PROJECT_DIR}/inc/tpl/conf.sh"; return 0;;
     esac
 
     shift

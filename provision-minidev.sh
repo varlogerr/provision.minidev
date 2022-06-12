@@ -11,7 +11,6 @@ for f in \
   read-args \
   extend-conf \
   validation \
-  sys-conf \
   lib/common \
   lib/git \
   lib/tmux \

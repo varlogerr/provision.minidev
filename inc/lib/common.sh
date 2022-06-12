@@ -36,8 +36,8 @@ common.install_vscode() {
   }
 
   common.log "${phase}" "installing ..."
-  wget -q "${SYS_CONF[ms_gpg_link]}" -O- | apt-key add -
-  add-apt-repository "deb [arch=amd64] ${SYS_CONF[vscode_repo_link]} stable main"
+  wget -q "${CONF[ms_gpg_link]}" -O- | apt-key add -
+  add-apt-repository "deb [arch=amd64] ${CONF[vscode_repo_link]} stable main"
   common.update_repository
   apt install -y code
 }
