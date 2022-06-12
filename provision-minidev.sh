@@ -15,4 +15,5 @@ for f in \
   lib/git \
   lib/tmux \
   lib/elixir \
+  lib/cleanup \
 ; do . "${PROJECT_DIR}/inc/${f}.sh"; done
